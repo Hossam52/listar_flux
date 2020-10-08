@@ -1,7 +1,6 @@
 # listar_flux
 
-A new Flutter project.
-
+Listar Flux app
 ## Getting Started
 
 This project is a starting point for a Flutter application.
