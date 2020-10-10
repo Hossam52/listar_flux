@@ -19,7 +19,7 @@ class _ListarFluxState extends State<ListarFlux> {
     Notifications(),
     Account()
   ];
-  int index = 1;
+  int index = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
