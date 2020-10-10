@@ -445,7 +445,7 @@ class _Home extends State<Home> {
                 ),
                 Text("Let find out what most interesting things"),
                 SizedBox(
-                  height: 20,
+                  height: 19,
                 ),
                 Container(
                   child: ListView(
