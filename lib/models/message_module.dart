@@ -1,20 +1,15 @@
 import 'conversation_module.dart';
 
 class OuterMessageModule {
-  String lastMessage;
   String name;
-  String time;
   List<String> imagesAtThisConversation;
-  Conversation conv;
-  OuterMessageModule({this.conv,this.name,this.lastMessage, this.time, this.imagesAtThisConversation});
+  List<Chat> chat;
+  OuterMessageModule({this.chat,this.name, this.imagesAtThisConversation});
 }
-List<OuterMessageModule> get allConversations {
-  return _allConversations;
-}
-List<OuterMessageModule> _allConversations =[
-  OuterMessageModule(name:"First",lastMessage:"FirstMessage",time:"20-2-2020",imagesAtThisConversation: ['assets/images/person1.jpg'],conv:conversation[0]),
-  OuterMessageModule(name:"Second",lastMessage:"SecondMessage",time:"21-2-2020",imagesAtThisConversation: ['assets/images/person2.jpg'],conv:conversation[1]),
-  OuterMessageModule(name:"Third",lastMessage:"ThirdMessage",time:"22-2-2020",imagesAtThisConversation: ['assets/images/person3.jpg'],conv:conversation[2]),
-  OuterMessageModule(name:"Forth",lastMessage:"Forth Message",time:"23-2-2020",imagesAtThisConversation: ['assets/images/person4.jpg'],conv:conversation[3]),
+List<OuterMessageModule> allConversations =[
+  OuterMessageModule(name:"First",imagesAtThisConversation: ['assets/images/person1.jpg','assets/images/person2.jpg','assets/images/person3.jpg','assets/images/person4.jpg'],chat:allChats[0]),
+  OuterMessageModule(name:"Second",imagesAtThisConversation: ['assets/images/person2.jpg'],chat:allChats[1]),
+  OuterMessageModule(name:"Third",imagesAtThisConversation: ['assets/images/person3.jpg'],chat:allChats[2]),
+  OuterMessageModule(name:"Forth",imagesAtThisConversation: ['assets/images/person4.jpg'],chat:allChats[3]),
 ];
 

@@ -1,9 +1,4 @@
-class Conversation {
-  List<String> sender = List<String>();
-  List<String> reciever = List<String>();
-  List<Chat>chat;
-  Conversation({this.sender, this.reciever,this.chat});
-}
+
 class Chat{
   String message;
   bool me;
@@ -20,17 +15,11 @@ List<Chat> ch =[
   Chat(message:"sender",me: true,time:"Fri Oct 9 2020"),
   Chat(message:"reciver",me: false,time:"Fri Oct 9 2020"),
   Chat(message:"reciever",me: false,time:"Fri Oct 9 2020"),
-  Chat(message:"me",me: true),
+  Chat(message:"me",me: true,time:"Fri Oct 10 2020"),
 ];
-List<String> _sender = ["a", "b", "d", "e", "f", "g", "h", "i"];
-List<String> _reciever = ["j", "k", "l", "m", "n", "o", "p", "q"];
-
-List<Conversation> get conversation{
-  return _conv;
-}
-List<Conversation> _conv = [
-  Conversation(sender: _sender, reciever: _reciever,chat: ch),
-  Conversation(sender: _sender, reciever: _reciever,chat: ch),
-  Conversation(sender: _sender, reciever: _reciever,chat: ch),
-  Conversation(sender: _sender, reciever: _reciever,chat: ch),
+List<List<Chat>> allChats = [
+ new List<Chat>.from(ch),
+ new List<Chat>.from(ch),
+ new List<Chat>.from(ch),
+ new List<Chat>.from(ch),
 ];

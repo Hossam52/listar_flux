@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:listar_flux/widget/multi_image.dart';
 import 'package:listar_flux/models/message_module.dart';
 import 'package:listar_flux/screens/conversation.dart';
 import 'package:listar_flux/widget/margin.dart';
@@ -9,6 +10,7 @@ class Messages extends StatefulWidget {
 }
 
 class _MessagesState extends State<Messages> {
+  double width;
   List<OuterMessageModule> conversations;
   @override
   initState() {
@@ -18,7 +20,10 @@ class _MessagesState extends State<Messages> {
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width;
     return Scaffold(
+      floatingActionButton:
+          FloatingActionButton(child: Icon(Icons.add), onPressed: () {}),
       appBar: AppBar(
         centerTitle: true,
         title: Text("Messages"),
@@ -32,31 +37,27 @@ class _MessagesState extends State<Messages> {
                   separatorBuilder: (context, index) => Divider(),
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () {
-                        print("tapped $index");
-                        Navigator.push(
+                      onTap: () async {
+                        await Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Conversation(
-                                  chat:conversations[index].conv.chat,
-                                )));
-                        conversations[index].conv;
+                                      chat: conversations[index].chat,
+                                    )));
+                        setState(() {});
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize:MainAxisSize.max,
+                        mainAxisSize: MainAxisSize.max,
                         children: [
                           Row(
                             children: [
                               CircleAvatar(
                                 backgroundColor: Colors.black45,
                                 radius: 33,
-                                child: CircleAvatar(
-                                  radius: 30,
-                                  backgroundImage: AssetImage(
-                                      conversations[index]
-                                          .imagesAtThisConversation[0]),
-                                ),
+                                child: MultiImage(size:100,imagePaths: conversations[index]
+                                          .imagesAtThisConversation)
+                                  
                               ),
                               Margin(
                                   margin: EdgeInsets.only(left: 10),
@@ -68,13 +69,48 @@ class _MessagesState extends State<Messages> {
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 18)),
-                                      Text(conversations[index].lastMessage,
-                                          style: TextStyle(fontSize: 15)),
+                                      ConstrainedBox(
+                                        constraints: BoxConstraints(
+                                            maxWidth: width * 0.4),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              conversations[index]
+                                                      .chat[conversations[index]
+                                                              .chat
+                                                              .length -
+                                                          1]
+                                                      .me
+                                                  ? "You: "
+                                                  : "Other: ",
+                                              style: TextStyle(
+                                                  fontSize: 13,
+                                                  color: Colors.grey),
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                  conversations[index]
+                                                      .chat[conversations[index]
+                                                              .chat
+                                                              .length -
+                                                          1]
+                                                      .message,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style:
+                                                      TextStyle(fontSize: 15)),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   )),
                             ],
                           ),
-                          Text(conversations[index].time,
+                          Text(
+                              conversations[index]
+                                  .chat[conversations[index].chat.length - 1]
+                                  .time,
                               style: TextStyle(color: Colors.grey)),
                         ],
                       ),
