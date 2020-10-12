@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:listar_flux/models/conversation_module.dart';
+import 'package:listar_flux/models/person.dart';
 import 'package:listar_flux/screens/persons_on_conversation.dart';
 import 'package:listar_flux/widget/multi_image.dart';
 import 'package:listar_flux/models/message_module.dart';
@@ -20,10 +21,11 @@ class _MessagesState extends State<Messages> {
     conversations = allConversations;
   }
 
-  Widget circleImage(List<String> imgPaths) {
+  Widget circleImage(List<Person> imgPaths) {
     return GestureDetector(
-      onTap:(){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>PersonOnConversation(images:imgPaths)));
+      onTap:()async{
+        await Navigator.push(context, MaterialPageRoute(builder: (context)=>PersonOnConversation(images:imgPaths)));
+        setState((){});
       },
           child: CircleAvatar(
         radius: 37,
@@ -107,7 +109,7 @@ class _MessagesState extends State<Messages> {
                       children: [
                         Row(
                           children: [
-                            circleImage(conversation.imagesAtThisConversation),
+                            circleImage(conversation.personsOnConversation),
                             convNameAndLastMessage(
                                 conversation.name, lastMessage),
                           ],

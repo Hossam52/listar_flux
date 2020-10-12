@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:listar_flux/models/person.dart';
 
 class MultiImage extends StatelessWidget {
-  final List<String> imagePaths;
+  final List<Person> imagePaths;
   const MultiImage({Key key, @required this.imagePaths, this.size})
       : super(key: key);
 
@@ -38,7 +39,7 @@ class MultiImage extends StatelessWidget {
                 : Container(
                     color: Colors.red[index * 100],
                     child: Image.asset(
-                      imagePaths[index],
+                      imagePaths[index].imgPath,
                       fit: BoxFit.cover,
                     ),
                   );

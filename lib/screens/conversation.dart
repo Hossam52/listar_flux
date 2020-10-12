@@ -166,7 +166,7 @@ class _ConversationState extends State<Conversation> {
   }
 
   addImageToList(ImageSource source) async {
-    await(source == ImageSource.gallery
+    await (source == ImageSource.gallery
             ? takeImage.imageFromGallery()
             : takeImage.imageFromCamera())
         .then((value) => _imgPath = value);
@@ -188,30 +188,30 @@ class _ConversationState extends State<Conversation> {
 
   void showBottomSheet(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Margin(
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              ListTile(
+      context: context,
+      builder: (context) {
+        return Margin(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            ListTile(
+              leading: Icon(Icons.image, color: Theme.of(context).primaryColor),
+              title: Text("Select from gallery"),
+              onTap: () async {
+                Navigator.pop(context);
+                addImageToList(ImageSource.gallery);
+              },
+            ),
+            ListTile(
                 leading:
-                    Icon(Icons.image, color: Theme.of(context).primaryColor),
-                title: Text("Select from gallery"),
-                onTap: () async {
+                    Icon(Icons.camera, color: Theme.of(context).primaryColor),
+                title: Text("Take a photo"),
+                onTap: () {
                   Navigator.pop(context);
-                  addImageToList(ImageSource.gallery);
-                },
-              ),
-              ListTile(
-                  leading:
-                      Icon(Icons.camera, color: Theme.of(context).primaryColor),
-                  title: Text("Take a photo"),
-                  onTap: () {
-                    Navigator.pop(context);
-                    addImageToList(ImageSource.camera);
-                  }),
-            ]),
-          );
-        });
+                  addImageToList(ImageSource.camera);
+                }),
+          ]),
+        );
+      },
+    );
   }
 
   Widget textField(BuildContext context) {
@@ -270,8 +270,7 @@ class _ConversationState extends State<Conversation> {
       title: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          MultiImage(
-              imagePaths: widget.module.imagesAtThisConversation, size: 50),
+          MultiImage(imagePaths: widget.module.personsOnConversation, size: 50),
           Margin(child: Text(widget.module.name))
         ],
       ),
