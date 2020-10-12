@@ -1,8 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:listar_flux/models/conversation_module.dart';
+import 'package:listar_flux/screens/persons_on_conversation.dart';
 import 'package:listar_flux/widget/multi_image.dart';
 import 'package:listar_flux/models/message_module.dart';
 import 'package:listar_flux/screens/conversation.dart';
@@ -21,18 +19,17 @@ class _MessagesState extends State<Messages> {
     super.initState();
     conversations = allConversations;
   }
-File cameraImage;
-final picker = ImagePicker();
-Future getImage({ImageSource source}) async {
-final pickedFile = await picker.getImage(source: source);
-setState(() {
-cameraImage = File(pickedFile.path);
-});
-}
 
   Widget circleImage(List<String> imgPaths) {
-    return CircleAvatar(
-      radius:37,child: MultiImage(size: 100, imagePaths: imgPaths));
+    return GestureDetector(
+      onTap:(){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>PersonOnConversation(images:imgPaths)));
+      },
+          child: CircleAvatar(
+        radius: 37,
+        child: MultiImage(size: 100, imagePaths: imgPaths),
+      ),
+    );
   }
 
   Widget convNameAndLastMessage(String name, Chat lastMessage) {
@@ -47,22 +44,24 @@ cameraImage = File(pickedFile.path);
           ),
           ConstrainedBox(
             constraints: BoxConstraints(maxWidth: width * 0.4),
-            child: Row(
-              children: [
-                Text(
-                  lastMessage.me ? "You: " : "Other: ",
-                  style: TextStyle(fontSize: 13, color: Colors.grey),
-                ),
-                Expanded(
-                  child: Text(
-                      lastMessage.type == MessageType.photo
-                          ? "send image"
-                          : lastMessage.message,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 15)),
-                ),
-              ],
-            ),
+            child: lastMessage == null
+                ? Container()
+                : Row(
+                    children: [
+                      Text(
+                        lastMessage.me ? "You: " : "Other: ",
+                        style: TextStyle(fontSize: 13, color: Colors.grey),
+                      ),
+                      Expanded(
+                        child: Text(
+                            lastMessage.type == MessageType.photo
+                                ? "send image"
+                                : lastMessage.message,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 15)),
+                      ),
+                    ],
+                  ),
           ),
         ],
       ),
@@ -74,7 +73,7 @@ cameraImage = File(pickedFile.path);
     width = MediaQuery.of(context).size.width;
     return Scaffold(
       floatingActionButton:
-          FloatingActionButton(child: Icon(Icons.add), onPressed: () {getImage();}),
+          FloatingActionButton(child: Icon(Icons.add), onPressed: () {}),
       appBar: AppBar(
         centerTitle: true,
         title: Text("Messages"),
@@ -89,7 +88,9 @@ cameraImage = File(pickedFile.path);
                 itemBuilder: (context, index) {
                   OuterMessageModule conversation = conversations[index];
                   int chatLength = conversation.chat.length;
-                  Chat lastMessage = conversation.chat[chatLength - 1];
+                  Chat lastMessage = chatLength == 0
+                      ? null
+                      : conversation.chat[chatLength - 1];
                   return InkWell(
                     onTap: () async {
                       await Navigator.push(
@@ -111,10 +112,12 @@ cameraImage = File(pickedFile.path);
                                 conversation.name, lastMessage),
                           ],
                         ),
-                        Text(
-                          lastMessage.time,
-                          style: TextStyle(color: Colors.grey),
-                        ),
+                        lastMessage == null
+                            ? Container()
+                            : Text(
+                                lastMessage.time,
+                                style: TextStyle(color: Colors.grey),
+                              ),
                       ],
                     ),
                   );

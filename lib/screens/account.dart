@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:listar_flux/screens/ForgetPassword.dart';
 import 'package:listar_flux/screens/SignUp.dart';
 
-final KStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
+final kStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
 
 class Account extends StatefulWidget {
   static String routeName = 'Account';
@@ -114,7 +114,7 @@ class _AccountState extends State<Account> {
                               },
                               child: Text(
                                 'Forget Password',
-                                style: KStyle,
+                                style: kStyle,
                               )),
                           FlatButton(
                               onPressed: () {
@@ -123,7 +123,7 @@ class _AccountState extends State<Account> {
                               },
                               child: Text(
                                 'Sign Up',
-                                style: KStyle,
+                                style: kStyle,
                               ))
                         ],
                       )

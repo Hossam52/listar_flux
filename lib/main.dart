@@ -4,7 +4,6 @@ import 'package:listar_flux/screens/SignUp.dart';
 
 import 'entry_screen.dart';
 import 'screens/account.dart';
-import 'screens/account.dart';
 
 void main() {
   runApp(MyApp());

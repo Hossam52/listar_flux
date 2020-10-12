@@ -6,8 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:listar_flux/models/conversation_module.dart';
 import 'package:intl/intl.dart';
 import 'package:listar_flux/models/message_module.dart';
+import 'package:listar_flux/models/pick_image.dart';
 import 'package:listar_flux/widget/margin.dart';
 import 'package:listar_flux/widget/multi_image.dart';
+
+import 'full_screen_image.dart';
 
 class Conversation extends StatefulWidget {
   final OuterMessageModule module;
@@ -20,32 +23,27 @@ class Conversation extends StatefulWidget {
 }
 
 class _ConversationState extends State<Conversation> {
-  File selectedImage;
+  PickImage takeImage;
+  List<int> indexOfLongPressedItems;
+  bool longPressOnItem;
+  String _imgPath;
   TextEditingController txtController;
   double width;
   ScrollController _controller;
   @override
   initState() {
     super.initState();
+    longPressOnItem = false;
+    indexOfLongPressedItems = List<int>();
+    takeImage = PickImage();
 
     _controller = ScrollController();
     txtController = TextEditingController();
     animateToLastMessage();
   }
 
-  Future _imgFromGallery() async {
-     await ImagePicker().getImage(source: ImageSource.gallery);
-    setState(() {
-      // if (res == null)
-      //   print("Not seleccted");
-      // else
-      //   selectedImage = File(res.path);
-    });
-  }
-
   void animateToLastMessage() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      //_controller.jumpTo(_controller.position.maxScrollExtent);
       _controller.animateTo(_controller.position.maxScrollExtent,
           duration: Duration(milliseconds: 200), curve: Curves.easeIn);
     });
@@ -58,7 +56,6 @@ class _ConversationState extends State<Conversation> {
       ),
       child: Container(
         decoration: BoxDecoration(
-            // image: imagePath!=null?DecorationImage(image: null):DecorationImage(image: null),
             color: me ? Theme.of(context).primaryColor : Colors.grey,
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(15),
@@ -68,7 +65,29 @@ class _ConversationState extends State<Conversation> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: imagePath != null
-              ? Image.asset(imagePath)
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    message == null
+                        ? Container()
+                        : Text(
+                            message,
+                            style: TextStyle(fontSize: 22),
+                          ),
+                    Margin(
+                        margin: EdgeInsets.only(top: 10),
+                        child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          FullScreenImage(imgPath: imagePath)));
+                            },
+                            child: Image.file(File(imagePath)))),
+                  ],
+                )
               : Text(
                   message,
                   style: TextStyle(fontSize: 22),
@@ -90,7 +109,7 @@ class _ConversationState extends State<Conversation> {
           ),
         ),
         chat.type == MessageType.photo
-            ? decorateMessage(chat.message, chat.me, chat.message)
+            ? decorateMessage(chat.message, chat.me, chat.imagePath)
             : decorateMessage(chat.message, chat.me),
       ],
     );
@@ -105,7 +124,7 @@ class _ConversationState extends State<Conversation> {
         ),
         Margin(
           child: chat.type == MessageType.photo
-              ? decorateMessage(chat.message, chat.me, chat.message)
+              ? decorateMessage(chat.message, chat.me, chat.imagePath)
               : decorateMessage(chat.message, chat.me),
         ),
         Expanded(
@@ -146,7 +165,56 @@ class _ConversationState extends State<Conversation> {
     return nowTime;
   }
 
-  Widget textField() {
+  addImageToList(ImageSource source) async {
+    await(source == ImageSource.gallery
+            ? takeImage.imageFromGallery()
+            : takeImage.imageFromCamera())
+        .then((value) => _imgPath = value);
+    if (_imgPath == null) {
+      print(_imgPath);
+      return;
+    }
+    animateToLastMessage();
+    setState(() {
+      widget.module.chat.add(Chat(
+          message: txtController.text != "" ? txtController.text : null,
+          imagePath: _imgPath,
+          me: true,
+          type: MessageType.photo,
+          time: currentDate()));
+      _imgPath = null;
+    });
+  }
+
+  void showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Margin(
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              ListTile(
+                leading:
+                    Icon(Icons.image, color: Theme.of(context).primaryColor),
+                title: Text("Select from gallery"),
+                onTap: () async {
+                  Navigator.pop(context);
+                  addImageToList(ImageSource.gallery);
+                },
+              ),
+              ListTile(
+                  leading:
+                      Icon(Icons.camera, color: Theme.of(context).primaryColor),
+                  title: Text("Take a photo"),
+                  onTap: () {
+                    Navigator.pop(context);
+                    addImageToList(ImageSource.camera);
+                  }),
+            ]),
+          );
+        });
+  }
+
+  Widget textField(BuildContext context) {
     return Expanded(
       child: TextField(
         controller: txtController,
@@ -158,16 +226,8 @@ class _ConversationState extends State<Conversation> {
           contentPadding: EdgeInsets.only(top: 7, bottom: 7),
           suffixIcon: IconButton(
             icon: Icon(Icons.attach_file),
-            onPressed: 
-            () {
-              animateToLastMessage();
-              setState(() {
-                widget.module.chat.add(Chat(
-                    message: "assets/images/person2.jpg",
-                    me: false,
-                    type: MessageType.photo,
-                    time: currentDate()));
-              });
+            onPressed: () async {
+              showBottomSheet(context);
             },
           ),
           prefixIcon: IconButton(
@@ -193,6 +253,86 @@ class _ConversationState extends State<Conversation> {
     }
   }
 
+  Color decideColor(int index) {
+    if (longPressOnItem == false || indexOfLongPressedItems.isEmpty)
+      return null;
+    else {
+      if (indexOfLongPressedItems.contains(index)) {
+        return Colors.blue[100];
+      }
+      return null;
+    }
+  }
+
+  AppBar defaultAppBar() {
+    return AppBar(
+      leadingWidth: 30,
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          MultiImage(
+              imagePaths: widget.module.imagesAtThisConversation, size: 50),
+          Margin(child: Text(widget.module.name))
+        ],
+      ),
+      actions: [
+        IconButton(icon: Icon(Icons.call), onPressed: () {}),
+        IconButton(icon: Icon(Icons.videocam_outlined), onPressed: () {}),
+        IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
+      ],
+    );
+  }
+
+  AppBar deleteAppBar() {
+    return AppBar(
+      actions: [
+        IconButton(
+            icon: Icon(Icons.share, size: 40),
+            onPressed: () {
+              setState(() {
+                longPressOnItem = !longPressOnItem;
+              });
+            }),
+        IconButton(
+            icon: Icon(
+              Icons.delete_forever,
+              size: 40,
+            ),
+            onPressed: () {
+              int temp = 0;
+              indexOfLongPressedItems.sort();
+              List<int> t = List<int>();
+              for (int i = indexOfLongPressedItems.length - 1; i >= 0; i--) {
+                t.add(indexOfLongPressedItems[i]);
+                print(indexOfLongPressedItems[i].toString() + "\n");
+              }
+              for (int i = 0; i < indexOfLongPressedItems.length; i++) {
+                // print(widget.module.chat);
+                widget.module.chat.removeAt(indexOfLongPressedItems[i] - temp);
+                temp++;
+              }
+              setState(() {
+                indexOfLongPressedItems.clear();
+                longPressOnItem = !longPressOnItem;
+              });
+            }),
+        InkWell(
+            child: Center(
+              child: Text(
+                "Cancel",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            onTap: () {
+              setState(() {
+                indexOfLongPressedItems.clear();
+                longPressOnItem = !longPressOnItem;
+              });
+            })
+      ],
+    );
+  }
+
   @override
   Widget build(context) {
     width = MediaQuery.of(context).size.width;
@@ -201,21 +341,7 @@ class _ConversationState extends State<Conversation> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        appBar: AppBar(
-          leadingWidth: 30,
-          title: Row(
-            mainAxisSize:MainAxisSize.min,
-            children: [
-              MultiImage(imagePaths: widget.module.imagesAtThisConversation,size:50),
-              Margin(child: Text(widget.module.name))
-            ],
-          ),
-          actions: [
-            IconButton(icon: Icon(Icons.call), onPressed: () {}),
-            IconButton(icon: Icon(Icons.videocam_outlined), onPressed: () {}),
-            IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
-          ],
-        ),
+        appBar: longPressOnItem == true ? deleteAppBar() : defaultAppBar(),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -232,7 +358,29 @@ class _ConversationState extends State<Conversation> {
                         child: Container(
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: whatToDisplayAtListView(chat),
+                            child: GestureDetector(
+                                onTap: () {
+                                  if (longPressOnItem) {
+                                    if (indexOfLongPressedItems
+                                        .contains(index)) {
+                                      indexOfLongPressedItems.remove(index);
+                                      if (indexOfLongPressedItems.isEmpty)
+                                        longPressOnItem = !longPressOnItem;
+                                    } else
+                                      indexOfLongPressedItems.add(index);
+                                    setState(() {});
+                                  }
+                                },
+                                onLongPress: () {
+                                  if (longPressOnItem) return;
+                                  indexOfLongPressedItems.add(index);
+                                  setState(() {
+                                    longPressOnItem = !longPressOnItem;
+                                  });
+                                },
+                                child: Container(
+                                    color: decideColor(index),
+                                    child: whatToDisplayAtListView(chat))),
                           ),
                         ),
                       );
@@ -242,7 +390,7 @@ class _ConversationState extends State<Conversation> {
             Margin(
               child: Row(
                 children: [
-                  textField(),
+                  textField(context),
                   sendWidget(context),
                 ],
               ),

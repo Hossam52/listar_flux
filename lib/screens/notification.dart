@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-final KTextStyle = TextStyle(fontSize: 15.7, fontWeight: FontWeight.bold);
+final kStyle = TextStyle(fontSize: 15.7, fontWeight: FontWeight.bold);
 
 class Notifications extends StatelessWidget {
   //list of items
-  List<DetailsNotification> listOfDetails = [
+  final List<DetailsNotification> listOfDetails = [
     DetailsNotification(
       icon: Icons.shopping_basket,
       title: 'Tiger Nixon',
@@ -92,7 +92,7 @@ class NotificationItem extends StatelessWidget {
             width: 10,
           ),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(detailsNotification.title, style: KTextStyle),
+            Text(detailsNotification.title, style: kStyle),
             Text(
               detailsNotification.subtitle,
               style: TextStyle(

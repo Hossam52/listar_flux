@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:listar_flux/widget/margin.dart';
 
 class MultiImage extends StatelessWidget {
   final List<String> imagePaths;

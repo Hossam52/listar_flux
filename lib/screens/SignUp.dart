@@ -5,10 +5,9 @@ import 'account.dart';
 class SignUp extends StatelessWidget {
   static String routeName = 'SignUp';
   final _form = GlobalKey<FormState>();
-  TextEditingController _emial = TextEditingController();
-  TextEditingController _username = TextEditingController();
-  TextEditingController _password = TextEditingController();
-  var showPassword = true;
+  final TextEditingController _emial = TextEditingController();
+  final TextEditingController _username = TextEditingController();
+   bool showPassword = true;
 
   void saved(BuildContext context) {
     if (_form.currentState.validate()) {
@@ -89,7 +88,6 @@ class SignUp extends StatelessWidget {
                 RaisedButton(
                   onPressed: () {
                     saved(context);
-                    _form.currentState.dispose();
                   },
                   child: Text('Sign Up'),
                   color: Colors.deepOrange,

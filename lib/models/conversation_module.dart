@@ -6,10 +6,11 @@ enum MessageType {
 
 class Chat {
   String message;
+  String imagePath;
   bool me;
   String time;
   MessageType type;
-  Chat({this.message, this.me, this.time = "",this.type=MessageType.text});
+  Chat({this.message, this.me,this.imagePath, this.time = "",this.type=MessageType.text});
 }
 
 List<Chat> ch = [
