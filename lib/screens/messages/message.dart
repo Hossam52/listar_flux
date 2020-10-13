@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:listar_flux/models/conversation_module.dart';
 import 'package:listar_flux/models/person.dart';
-import 'package:listar_flux/screens/persons_on_conversation.dart';
+import 'package:listar_flux/screens/messages/person_at_conversation/persons_on_conversation.dart';
 import 'package:listar_flux/widget/multi_image.dart';
 import 'package:listar_flux/models/message_module.dart';
-import 'package:listar_flux/screens/conversation.dart';
+import 'package:listar_flux/screens/messages/conversation/conversation.dart';
 import 'package:listar_flux/widget/margin.dart';
 
 class Messages extends StatefulWidget {
@@ -51,7 +51,7 @@ class _MessagesState extends State<Messages> {
                 : Row(
                     children: [
                       Text(
-                        lastMessage.me ? "You: " : "Other: ",
+                        lastMessage.sender==Sender.me ? "You: " : "Other: ",
                         style: TextStyle(fontSize: 13, color: Colors.grey),
                       ),
                       Expanded(

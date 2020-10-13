@@ -1,8 +1,7 @@
-
 import 'package:flutter/Material.dart';
 import 'package:listar_flux/screens/account.dart';
 import 'package:listar_flux/screens/home.dart';
-import 'package:listar_flux/screens/message.dart';
+import 'package:listar_flux/screens/messages/message.dart';
 import 'package:listar_flux/screens/notification.dart';
 import 'package:listar_flux/screens/whiteList.dart';
 
