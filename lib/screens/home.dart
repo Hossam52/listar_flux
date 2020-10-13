@@ -440,7 +440,7 @@ class _Home extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Popular Location\n",
+                  "popular Location\n",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Text("Let find out what most interesting things"),
