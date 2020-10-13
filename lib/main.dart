@@ -8,10 +8,12 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
   return MaterialApp(
-      color: Colors.deepOrangeAccent,
-      debugShowCheckedModeBanner: false,
-      routes: {'/': (context) => ListarFlux()},
-    );
+    
+    debugShowCheckedModeBanner: false,
+    routes: {
+    '/': (context)=>ListarFlux()}
+    ,
+  );
   }
 
 }
