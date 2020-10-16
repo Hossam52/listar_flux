@@ -1,323 +1,10 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:listar_flux/screens/search.dart';
+import 'package:listar_flux/screens/whiteList.dart';
 
 class Home extends StatefulWidget {
-  Widget CaffesAndRooms() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        InkWell(
-          onTap: () {},
-          child: Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/c1.jpg'),
-                    fit: BoxFit.fill,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Colors.redAccent,
-                    width: 1,
-                  ),
-                ),
-                width: 130,
-                height: 100,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    ' Lounge Coffee',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                  ),
-                  Text(' Arts & Humanities'),
-                  Row(
-                    children: [
-                      Card(
-                        child: Text(" 4.5 "),
-                        color: Colors.redAccent,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star_half_outlined,
-                        color: Colors.yellow,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        InkWell(
-          onTap: () {},
-          child: Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/r1.jpg'),
-                    fit: BoxFit.fill,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Colors.redAccent,
-                    width: 1,
-                  ),
-                ),
-                width: 130,
-                height: 100,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    ' Lounge Coffee',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                  ),
-                  Text(' Arts & Humanities'),
-                  Row(
-                    children: [
-                      Card(
-                        child: Text(" 4.5 "),
-                        color: Colors.redAccent,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star_half_outlined,
-                        color: Colors.yellow,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        InkWell(
-          onTap: () {},
-          child: Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/r4.jpg'),
-                    fit: BoxFit.fill,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Colors.redAccent,
-                    width: 1,
-                  ),
-                ),
-                width: 130,
-                height: 100,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    ' Royal Room',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                  ),
-                  Text(' Arts & Humanities'),
-                  Row(
-                    children: [
-                      Card(
-                        child: Text(" 4.0 "),
-                        color: Colors.redAccent,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        InkWell(
-          onTap: () {},
-          child: Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/r3.jpg'),
-                    fit: BoxFit.fill,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Colors.redAccent,
-                    width: 1,
-                  ),
-                ),
-                width: 130,
-                height: 100,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    ' Adorable Room',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                  ),
-                  Text(' Arts & Humanities'),
-                  Row(
-                    children: [
-                      Card(
-                        child: Text(" 5.0 "),
-                        color: Colors.redAccent,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        InkWell(
-          onTap: () {},
-          child: Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/r2.jpg'),
-                    fit: BoxFit.fill,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Colors.redAccent,
-                    width: 1,
-                  ),
-                ),
-                width: 130,
-                height: 100,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    ' Vallejo Guest Room',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                  ),
-                  Text(' Arts & Humanities'),
-                  Row(
-                    children: [
-                      Card(
-                        child: Text(" 4.0 "),
-                        color: Colors.redAccent,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-      ],
-    );
-  }
-
   @override
   State<StatefulWidget> createState() => _Home();
 }
@@ -326,6 +13,369 @@ class _Home extends State<Home> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    Widget MyIcon(icon, txt, col) {
+      return Column(
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (BuildContext context) {
+                return WhiteList();
+              }));
+            },
+            child: CircleAvatar(
+              child: Icon(icon),
+              backgroundColor: col,
+            ),
+          ),
+          SizedBox(
+            height: 4,
+          ),
+          Text(txt),
+        ],
+      );
+    }
+
+    Widget CaffesAndRooms() {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (BuildContext context) {
+                return WhiteList();
+              }));
+            },
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/r1.jpg'),
+                      fit: BoxFit.fill,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.redAccent,
+                      width: 1,
+                    ),
+                  ),
+                  width: 130,
+                  height: 100,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      ' Lounge Coffee',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                    Text(' Arts & Humanities'),
+                    Row(
+                      children: [
+                        Card(
+                          child: Text(" 4.5 "),
+                          color: Colors.redAccent,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star_half_outlined,
+                          color: Colors.yellow,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (BuildContext context) {
+                return WhiteList();
+              }));
+            },
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/r4.jpg'),
+                      fit: BoxFit.fill,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.redAccent,
+                      width: 1,
+                    ),
+                  ),
+                  width: 130,
+                  height: 100,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      ' Royal Room',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                    Text(' Arts & Humanities'),
+                    Row(
+                      children: [
+                        Card(
+                          child: Text(" 4.0 "),
+                          color: Colors.redAccent,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (BuildContext context) {
+                return WhiteList();
+              }));
+            },
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/r3.jpg'),
+                      fit: BoxFit.fill,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.redAccent,
+                      width: 1,
+                    ),
+                  ),
+                  width: 130,
+                  height: 100,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      ' Adorable Room',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                    Text(' Arts & Humanities'),
+                    Row(
+                      children: [
+                        Card(
+                          child: Text(" 5.0 "),
+                          color: Colors.redAccent,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (BuildContext context) {
+                return WhiteList();
+              }));
+            },
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/r2.jpg'),
+                      fit: BoxFit.fill,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.redAccent,
+                      width: 1,
+                    ),
+                  ),
+                  width: 130,
+                  height: 100,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      ' Vallejo Guest Room',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                    Text(' Arts & Humanities'),
+                    Row(
+                      children: [
+                        Card(
+                          child: Text(" 4.0 "),
+                          color: Colors.redAccent,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (BuildContext context) {
+                return WhiteList();
+              }));
+            },
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/c1.jpg'),
+                      fit: BoxFit.fill,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.redAccent,
+                      width: 1,
+                    ),
+                  ),
+                  width: 130,
+                  height: 100,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      ' Vallejo Guest Room',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                    Text(' Arts & Humanities'),
+                    Row(
+                      children: [
+                        Card(
+                          child: Text(" 4.0 "),
+                          color: Colors.redAccent,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+        ],
+      );
+    }
 
     return Scaffold(
       body: ListView(
@@ -362,7 +412,12 @@ class _Home extends State<Home> {
                   side: BorderSide(color: Colors.redAccent, width: 2)),
               elevation: 0,
               color: Colors.white,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return Search();
+                }));
+              },
               child: Row(
                 children: [
                   Text(
@@ -452,7 +507,12 @@ class _Home extends State<Home> {
                     scrollDirection: Axis.horizontal,
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) {
+                            return WhiteList();
+                          }));
+                        },
                         child: Container(
                           alignment: Alignment.bottomCenter,
                           padding: EdgeInsets.only(bottom: 20),
@@ -481,7 +541,12 @@ class _Home extends State<Home> {
                         width: 10,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) {
+                            return WhiteList();
+                          }));
+                        },
                         child: Container(
                           alignment: Alignment.bottomCenter,
                           padding: EdgeInsets.only(bottom: 20),
@@ -510,7 +575,12 @@ class _Home extends State<Home> {
                         width: 10,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) {
+                            return WhiteList();
+                          }));
+                        },
                         child: Container(
                           alignment: Alignment.bottomCenter,
                           padding: EdgeInsets.only(bottom: 20),
@@ -539,7 +609,12 @@ class _Home extends State<Home> {
                         width: 10,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) {
+                            return WhiteList();
+                          }));
+                        },
                         child: Container(
                           alignment: Alignment.bottomCenter,
                           padding: EdgeInsets.only(bottom: 20),
@@ -577,7 +652,7 @@ class _Home extends State<Home> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 Text('Whats that could happen\n'),
-                widget.CaffesAndRooms(),
+                CaffesAndRooms(),
               ],
             ),
           ),
@@ -585,22 +660,4 @@ class _Home extends State<Home> {
       ),
     );
   }
-}
-
-Widget MyIcon(icon, txt, col) {
-  return Column(
-    children: [
-      InkWell(
-        onTap: () {},
-        child: CircleAvatar(
-          child: Icon(icon),
-          backgroundColor: col,
-        ),
-      ),
-      SizedBox(
-        height: 4,
-      ),
-      Text(txt),
-    ],
-  );
 }

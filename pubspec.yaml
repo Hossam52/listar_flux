@@ -24,6 +24,8 @@ dependencies:
   intl: ^0.16.1
   image_picker: ^0.6.7+11
   carousel_pro: ^1.0.0
+  lazy_load_scrollview: ^1.1.0
+
 
   flutter:
     sdk: flutter
